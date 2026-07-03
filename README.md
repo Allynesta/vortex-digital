@@ -2,7 +2,7 @@
 
 Des sites web professionnels pour les entreprises mauriciennes, livrés en 5 jours minimum.
 
-🔗 Site web : https://allynesta.github.io/vortex-digital/ voila le site.
+🔗 Site web : https://allynesta.github.io/vortex-digital/ 
 
 📍 Rose Hill · Quatre Bornes · Port Louis · Vacoas-Phoenix · Curepipe
 
