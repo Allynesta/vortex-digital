@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vortex Digital — Votre site web pro livré en 5 jours | Maurice</title>
-<meta name="description" content="Vortex Digital crée des sites web rapides et modernes pour les PME de Maurice : boutiques, location de voitures, prestataires de services. Livraison en 5 jours.">
+<meta name="description" content="Vortex Digital aide les PME et acteurs du tourisme de Maurice à être visibles en ligne : site web, Google Business, réseaux sociaux et réservation. Livraison en 5 jours.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -160,7 +160,8 @@
   /* ---------- CARDS: POUR QUI ---------- */
   .panel-alt{background:rgba(17,23,38,.3);}
   .card-grid{display:grid;grid-template-columns:1fr;gap:24px;}
-  @media (min-width:768px){ .card-grid{grid-template-columns:repeat(3,1fr);} }
+  @media (min-width:640px){ .card-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (min-width:1024px){ .card-grid{grid-template-columns:repeat(4,1fr);} }
   .card{
     border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:28px;
     transition:border-color .2s ease;
@@ -196,6 +197,11 @@
   .price-card h3{font-size:18px;font-weight:600;}
   .price-card p.desc{margin-top:8px;font-size:14px;color:var(--slate-400);}
   .price-card p.price{margin-top:24px;font-family:'Sora',sans-serif;font-weight:700;font-size:28px;color:#fff;}
+  .price-card p.price .period{font-family:'Inter',sans-serif;font-weight:500;font-size:14px;color:var(--slate-400);}
+  .price-card p.setup{margin-top:6px;font-size:13px;color:var(--slate-400);}
+  .price-card ul.features{margin-top:20px;display:flex;flex-direction:column;gap:10px;}
+  .price-card ul.features li{font-size:13px;color:var(--slate-300);padding-left:20px;position:relative;}
+  .price-card ul.features li::before{content:"";position:absolute;left:0;top:5px;height:5px;width:5px;border-radius:50%;background:var(--cyan-400);}
 
   /* ---------- CONTACT ---------- */
   .contact-wrap{max-width:680px;margin:0 auto;}
@@ -267,7 +273,7 @@
     <h1>Votre site web pro, livré en 5 jours.</h1>
 
     <p class="lede">
-      Vortex Digital conçoit des sites rapides et sur mesure pour les PME mauriciennes — boutiques de prêt-à-porter, agences de location de voiture, prestataires de services. Sans jargon, sans délais interminables.
+      Vortex Digital aide les PME et acteurs du tourisme de Maurice à être visibles en ligne — site web, Google Business, WhatsApp et réservation, réunis en un seul endroit. Sans jargon, sans délais interminables.
     </p>
 
     <div class="hero-actions">
@@ -360,6 +366,14 @@
         <h3>Prestataires de services</h3>
         <p>Salons, artisans, consultants : un site qui inspire confiance et facilite la prise de rendez-vous ou de contact.</p>
       </div>
+
+      <div class="card">
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+        </div>
+        <h3>Tourisme & excursions</h3>
+        <p>Guides, activités, guest houses : un site avec réservation en ligne et présence pensée pour les visiteurs internationaux.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -389,25 +403,47 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Formules</span>
-      <h2>Un tarif adapté à chaque commerce.</h2>
+      <h2>Un abonnement adapté à chaque commerce.</h2>
+      <p>Un petit frais de mise en place, puis un abonnement mensuel simple — pas de gros chèque à sortir d'un coup.</p>
     </div>
 
     <div class="price-grid">
       <div class="price-card">
-        <h3>Essentiel</h3>
-        <p class="desc">Site vitrine, jusqu'à 5 pages, formulaire de contact.</p>
-        <p class="price">Sur devis</p>
+        <h3>Starter</h3>
+        <p class="desc">Pour démarrer votre présence en ligne, simplement.</p>
+        <p class="price">Rs 1 200<span class="period">/mois</span></p>
+        <p class="setup">+ Rs 8 000 de mise en place</p>
+        <ul class="features">
+          <li>Site web (jusqu'à 5 pages)</li>
+          <li>Fiche Google Business</li>
+          <li>Intégration WhatsApp</li>
+          <li>SEO local de base</li>
+        </ul>
       </div>
       <div class="price-card featured">
         <span class="price-badge">Le plus choisi</span>
-        <h3>Commerce</h3>
-        <p class="desc">Catalogue produits, réservation/rendez-vous, intégration WhatsApp.</p>
-        <p class="price">Sur devis</p>
+        <h3>Growth</h3>
+        <p class="desc">Pour les commerces qui veulent être suivis et gérés.</p>
+        <p class="price">Rs 2 500<span class="period">/mois</span></p>
+        <p class="setup">+ Rs 15 000 de mise en place</p>
+        <ul class="features">
+          <li>Tout Starter, plus :</li>
+          <li>Gestion des réseaux sociaux</li>
+          <li>Contenu mensuel</li>
+          <li>Système de réservation</li>
+        </ul>
       </div>
       <div class="price-card">
-        <h3>Sur mesure</h3>
-        <p class="desc">Fonctionnalités spécifiques, back-office, multi-langue.</p>
-        <p class="price">Sur devis</p>
+        <h3>Tourism</h3>
+        <p class="desc">Pour guides, locations, guest houses et excursions.</p>
+        <p class="price">Rs 4 000<span class="period">/mois</span></p>
+        <p class="setup">+ Rs 22 000 de mise en place</p>
+        <ul class="features">
+          <li>Tout Growth, plus :</li>
+          <li>Gestion des réservations</li>
+          <li>Promotion Instagram</li>
+          <li>Listing prioritaire (à venir)</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -449,6 +485,9 @@
           <option value="pret-a-porter">Boutique de prêt-à-porter</option>
           <option value="location-voiture">Location de voiture</option>
           <option value="services">Prestataire de services</option>
+          <option value="tourisme">Guide / excursion / activité</option>
+          <option value="hebergement">Guest house / hébergement</option>
+          <option value="restaurant">Restaurant</option>
           <option value="autre">Autre</option>
         </select>
       </div>
@@ -481,8 +520,8 @@
   // ⚠️ CONFIGURATION REQUISE :
   // Remplace ces deux valeurs par celles de ton projet Supabase
   // (Project Settings → API dans ton dashboard Supabase).
-  const SUPABASE_URL = 'https://iwvunkvhcqjlvxhcdqsn.supabase.co'
-  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3dnVua3ZoY3FqbHZ4aGNkcXNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM0NDU5NzMsImV4cCI6MjA5OTAyMTk3M30.TYycec0JdZoNCyfeNXiM62F8wngvfU-ZvoHIdmtuNnw'
+  const SUPABASE_URL = 'https://erxjouxctjbgrcwodjhb.supabase.co'
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVyeGpvdXhjdGpiZ3Jjd29kamhiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMxMDQyNjgsImV4cCI6MjA5ODY4MDI2OH0.cjRfBqiAmYDFlUbF0lZoB30Xg5MPKr7Kh9MRzy0o7yE'
 
   const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 
