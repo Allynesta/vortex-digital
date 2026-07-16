@@ -10,6 +10,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
+<script>
+  (function() {
+    const stored = localStorage.getItem('vortex-theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (stored === 'dark' || (!stored && prefersDark)) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
 <style>
   :root{
     --bg:#F6F5F2;
@@ -28,6 +38,22 @@
     --radius:14px;
   }
 
+  :root[data-theme="dark"]{
+    --bg:#15140F;
+    --panel:#1E1D17;
+    --panel2:#262419;
+    --line:#35331F;
+    --ink:#F3F1E9;
+    --accent-600:#4C8B7C;
+    --accent-500:#5FA290;
+    --accent-400:#7BB8A8;
+    --accent-tint:#1E332F;
+    --white:#FFFFFF;
+    --slate-300:#CBC7B9;
+    --slate-400:#9A968A;
+    --slate-500:#726E62;
+  }
+
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
   body{
@@ -37,6 +63,7 @@
     font-size:16px;
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
+    transition:background .25s ease,color .25s ease;
   }
   h1,h2,h3{font-family:'Sora',sans-serif;color:var(--ink);line-height:1.15;}
   a{color:inherit;text-decoration:none;}
@@ -81,6 +108,18 @@
   .nav-links a:hover{color:var(--ink);}
   @media (min-width:768px){ .nav-links{display:flex;} }
   .nav-cta{font-size:14px;padding:10px 18px;}
+
+  .theme-toggle{
+    display:inline-flex;align-items:center;justify-content:center;
+    height:36px;width:36px;border-radius:999px;border:1px solid var(--line);
+    background:var(--panel);color:var(--slate-300);cursor:pointer;margin-right:8px;
+    transition:border-color .2s ease,color .2s ease;
+  }
+  .theme-toggle:hover{border-color:var(--accent-500);color:var(--accent-600);}
+  .theme-toggle svg{height:18px;width:18px;}
+  .theme-toggle .icon-moon{display:none;}
+  :root[data-theme="dark"] .theme-toggle .icon-sun{display:none;}
+  :root[data-theme="dark"] .theme-toggle .icon-moon{display:block;}
 
   /* ---------- HERO ---------- */
   .hero{
@@ -170,7 +209,7 @@
 
   /* ---------- FORMULES ---------- */
   .price-grid{display:grid;grid-template-columns:1fr;gap:24px;}
-  @media (min-width:768px){ .price-grid{grid-template-columns:repeat(3,1fr);} }
+  @media (min-width:768px){ .price-grid{grid-template-columns:repeat(2,1fr);} }
   .price-card{border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:32px;position:relative;}
   .price-card.featured{border:2px solid var(--accent-500);}
   .price-badge{
@@ -185,6 +224,7 @@
   .price-card ul.features{margin-top:20px;display:flex;flex-direction:column;gap:10px;}
   .price-card ul.features li{font-size:13px;color:var(--slate-300);padding-left:20px;position:relative;}
   .price-card ul.features li::before{content:"";position:absolute;left:0;top:5px;height:5px;width:5px;border-radius:50%;background:var(--accent-500);}
+  .price-card .btn{margin-top:24px;width:100%;}
 
   /* ---------- CONTACT ---------- */
   .contact-wrap{max-width:680px;margin:0 auto;}
@@ -244,7 +284,13 @@
       <a href="#formules">Formules</a>
       <a href="#contact">Contact</a>
     </div>
-    <a href="#contact" class="btn btn-primary nav-cta">Demander un devis</a>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Basculer le mode sombre">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
+      <a href="#contact" class="btn btn-primary nav-cta">Demander un devis</a>
+    </div>
   </nav>
 </header>
 
@@ -391,9 +437,10 @@
     </div>
 
     <div class="price-grid">
-      <div class="price-card">
+      <div class="price-card featured">
+        <span class="price-badge">Pour démarrer</span>
         <h3>Starter</h3>
-        <p class="desc">Pour démarrer votre présence en ligne, simplement.</p>
+        <p class="desc">Pour lancer votre présence en ligne, simplement.</p>
         <p class="price">Rs 1 200<span class="period">/mois</span></p>
         <p class="setup">+ Rs 8 000 de mise en place</p>
         <ul class="features">
@@ -403,30 +450,17 @@
           <li>SEO local de base</li>
         </ul>
       </div>
-      <div class="price-card featured">
-        <span class="price-badge">Le plus choisi</span>
-        <h3>Growth</h3>
-        <p class="desc">Pour les commerces qui veulent être suivis et gérés.</p>
-        <p class="price">Rs 2 500<span class="period">/mois</span></p>
-        <p class="setup">+ Rs 15 000 de mise en place</p>
+      <div class="price-card">
+        <h3>Besoins spécifiques</h3>
+        <p class="desc">Réservation en ligne, gestion des réseaux, promotion touristique — chaque commerce est différent, on en discute ensemble.</p>
+        <p class="price">Sur devis</p>
         <ul class="features">
-          <li>Tout Starter, plus :</li>
           <li>Gestion des réseaux sociaux</li>
           <li>Contenu mensuel</li>
           <li>Système de réservation</li>
+          <li>Promotion Instagram (tourisme)</li>
         </ul>
-      </div>
-      <div class="price-card">
-        <h3>Tourism</h3>
-        <p class="desc">Pour guides, locations, guest houses et excursions.</p>
-        <p class="price">Rs 4 000<span class="period">/mois</span></p>
-        <p class="setup">+ Rs 22 000 de mise en place</p>
-        <ul class="features">
-          <li>Tout Growth, plus :</li>
-          <li>Gestion des réservations</li>
-          <li>Promotion Instagram</li>
-          <li>Listing prioritaire (à venir)</li>
-        </ul>
+        <a href="#contact" class="btn btn-secondary">Demander un devis</a>
       </div>
     </div>
   </div>
@@ -507,6 +541,7 @@
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3dnVua3ZoY3FqbHZ4aGNkcXNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM0NDU5NzMsImV4cCI6MjA5OTAyMTk3M30.TYycec0JdZoNCyfeNXiM62F8wngvfU-ZvoHIdmtuNnw'
 
   const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+  
 
   const form = document.getElementById('contact-form')
   const statusEl = document.getElementById('form-status')
@@ -543,6 +578,21 @@
     form.reset()
     submitBtn.disabled = false
     submitBtn.textContent = 'Envoyer ma demande'
+  })
+</script>
+
+<!-- ================= THEME TOGGLE ================= -->
+<script>
+  const themeBtn = document.getElementById('theme-toggle')
+  themeBtn.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark'
+    if (isDark) {
+      document.documentElement.removeAttribute('data-theme')
+      localStorage.setItem('vortex-theme', 'light')
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark')
+      localStorage.setItem('vortex-theme', 'dark')
+    }
   })
 </script>
 
