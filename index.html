@@ -36,6 +36,7 @@
     --slate-400:#736F65;
     --slate-500:#98948A;
     --radius:14px;
+    --header-bg: rgba(246,245,242,.88);
   }
 
   :root[data-theme="dark"]{
@@ -44,7 +45,7 @@
     --panel2:#262419;
     --line:#35331F;
     --ink:#F3F1E9;
-    --accent-600:#4C8B7C;
+    --accent-600:#3D7365;
     --accent-500:#5FA290;
     --accent-400:#7BB8A8;
     --accent-tint:#1E332F;
@@ -52,6 +53,7 @@
     --slate-300:#CBC7B9;
     --slate-400:#9A968A;
     --slate-500:#726E62;
+    --header-bg: rgba(21,20,15,.88);
   }
 
   *{box-sizing:border-box;margin:0;padding:0;}
@@ -91,12 +93,13 @@
   /* ---------- NAV ---------- */
   header{
     position:fixed;top:0;left:0;right:0;z-index:50;
-    background:rgba(246,245,242,.88);backdrop-filter:blur(10px);
+    background:var(--header-bg);backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);
   }
   nav{
     max-width:1120px;margin:0 auto;padding:0 24px;height:64px;
     display:flex;align-items:center;justify-content:space-between;
+    position:relative;
   }
   .logo{display:flex;align-items:center;gap:8px;font-family:'Sora',sans-serif;font-weight:700;color:var(--ink);}
   .logo-mark{
@@ -109,10 +112,12 @@
   @media (min-width:768px){ .nav-links{display:flex;} }
   .nav-cta{font-size:14px;padding:10px 18px;}
 
+  .nav-right{display:flex;align-items:center;gap:12px;}
+
   .theme-toggle{
     display:inline-flex;align-items:center;justify-content:center;
     height:36px;width:36px;border-radius:999px;border:1px solid var(--line);
-    background:var(--panel);color:var(--slate-300);cursor:pointer;margin-right:8px;
+    background:var(--panel);color:var(--slate-300);cursor:pointer;flex-shrink:0;
     transition:border-color .2s ease,color .2s ease;
   }
   .theme-toggle:hover{border-color:var(--accent-500);color:var(--accent-600);}
@@ -120,6 +125,25 @@
   .theme-toggle .icon-moon{display:none;}
   :root[data-theme="dark"] .theme-toggle .icon-sun{display:none;}
   :root[data-theme="dark"] .theme-toggle .icon-moon{display:block;}
+
+  /* ---------- MOBILE MENU ---------- */
+  .menu-toggle{
+    display:inline-flex;align-items:center;justify-content:center;
+    height:36px;width:36px;border-radius:8px;border:1px solid var(--line);
+    background:var(--panel);color:var(--ink);cursor:pointer;flex-shrink:0;
+  }
+  @media (min-width:768px){ .menu-toggle{display:none;} }
+  .menu-toggle svg{height:18px;width:18px;}
+
+  .mobile-menu{
+    display:none;position:absolute;top:calc(100% + 1px);left:0;right:0;
+    background:var(--panel);border-bottom:1px solid var(--line);
+    flex-direction:column;padding:8px 24px 16px;
+  }
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{padding:12px 0;font-size:15px;color:var(--slate-300);border-bottom:1px solid var(--line);}
+  .mobile-menu a:last-child{border-bottom:none;}
+  @media (min-width:768px){ .mobile-menu{display:none !important;} }
 
   /* ---------- HERO ---------- */
   .hero{
@@ -152,7 +176,7 @@
   .section-head h2{font-size:clamp(1.7rem,3.5vw,2.3rem);font-weight:700;margin-top:12px;}
   .section-head p{margin-top:16px;color:var(--slate-400);}
 
-  /* ---------- TIMELINE 5 JOURS (élément signature) ---------- */
+  /* ---------- TIMELINE 5 JOURS ---------- */
   .timeline-wrap{position:relative;}
   .timeline-line{
     display:none;position:absolute;top:24px;left:0;right:0;height:1px;
@@ -253,6 +277,7 @@
   #form-status{margin-top:12px;font-size:14px;text-align:center;}
   #form-status.ok{color:var(--accent-600);}
   #form-status.err{color:#B3432E;}
+  :root[data-theme="dark"] #form-status.err{color:#E0836E;}
 
   /* ---------- FOOTER ---------- */
   footer{border-top:1px solid var(--line);padding:40px 24px;}
@@ -284,12 +309,21 @@
       <a href="#formules">Formules</a>
       <a href="#contact">Contact</a>
     </div>
-    <div style="display:flex;align-items:center;gap:12px;">
+    <div class="nav-right">
       <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Basculer le mode sombre">
         <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
         <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
       </button>
       <a href="#contact" class="btn btn-primary nav-cta">Demander un devis</a>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Ouvrir le menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#force">Notre force</a>
+      <a href="#pour-qui">Pour qui</a>
+      <a href="#formules">Formules</a>
+      <a href="#contact">Contact</a>
     </div>
   </nav>
 </header>
@@ -329,7 +363,6 @@
 
     <div class="timeline-wrap">
       <div class="timeline-line"></div>
-      <div class="timeline-line glow"></div>
 
       <div class="timeline-grid">
         <div class="day-card">
@@ -534,14 +567,10 @@
 <script type="module">
   import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 
-  // ⚠️ CONFIGURATION REQUISE :
-  // Remplace ces deux valeurs par celles de ton projet Supabase
-  // (Project Settings → API dans ton dashboard Supabase).
   const SUPABASE_URL = 'https://iwvunkvhcqjlvxhcdqsn.supabase.co'
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3dnVua3ZoY3FqbHZ4aGNkcXNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM0NDU5NzMsImV4cCI6MjA5OTAyMTk3M30.TYycec0JdZoNCyfeNXiM62F8wngvfU-ZvoHIdmtuNnw'
 
   const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
-  
 
   const form = document.getElementById('contact-form')
   const statusEl = document.getElementById('form-status')
@@ -581,7 +610,7 @@
   })
 </script>
 
-<!-- ================= THEME TOGGLE ================= -->
+<!-- ================= THEME TOGGLE + MOBILE MENU ================= -->
 <script>
   const themeBtn = document.getElementById('theme-toggle')
   themeBtn.addEventListener('click', () => {
@@ -593,6 +622,15 @@
       document.documentElement.setAttribute('data-theme', 'dark')
       localStorage.setItem('vortex-theme', 'dark')
     }
+  })
+
+  const menuBtn = document.getElementById('menu-toggle')
+  const mobileMenu = document.getElementById('mobile-menu')
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open')
+  })
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.remove('open'))
   })
 </script>
 
