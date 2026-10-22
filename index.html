@@ -571,9 +571,9 @@
   // Remplace ces deux valeurs par celles de ton projet Supabase
   // (Project Settings → API dans ton dashboard Supabase).
   const SUPABASE_URL = 'https://iwvunkvhcqjlvxhcdqsn.supabase.co'
-  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3dnVua3ZoY3FqbHZ4aGNkcXNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM0NDU5NzMsImV4cCI6MjA5OTAyMTk3M30.TYycec0JdZoNCyfeNXiM62F8wngvfU-ZvoHIdmtuNnw'
+  const SUPABASE_KEY = 'sb_publishable_EglASDomD1ydmRA_zdj0aw_E5s20ElS'  // publishable key: public by design, RLS protects the data
 
-  const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+  const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)
   
 
   const form = document.getElementById('contact-form')
