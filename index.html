@@ -200,13 +200,15 @@
   :root[data-theme="dark"] #form-status.err{color:#E0836E;}
 
   /* ---------- FOOTER ---------- */
-  footer{border-top:1px solid var(--line);padding:36px 0 96px;font-size:14px;color:var(--slate-400);}
+  footer{border-top:1px solid var(--line);padding:36px 0;font-size:14px;color:var(--slate-400);}
   .footer-inner{display:flex;flex-direction:column;gap:10px;}
-  @media (min-width:700px){.footer-inner{flex-direction:row;justify-content:space-between;} footer{padding-bottom:36px;}}
+  @media (min-width:700px){.footer-inner{flex-direction:row;justify-content:space-between;}}
 
   /* ---------- MOBILE CONTACT BAR ---------- */
-  .mobile-bar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;gap:10px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:var(--header-bg);backdrop-filter:blur(10px);border-top:1px solid var(--line);}
+  .mobile-bar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;transform:translateY(110%);transition:transform .25s ease;gap:10px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:var(--header-bg);backdrop-filter:blur(10px);border-top:1px solid var(--line);}
+  .mobile-bar.show{transform:none;}
   .mobile-bar .btn{flex:1;padding:12px;font-size:15px;}
+  @media (prefers-reduced-motion:reduce){.mobile-bar{transition:none;}}
   @media (min-width:700px){.mobile-bar{display:none;}}
 </style>
 </head>
@@ -260,8 +262,8 @@
     </div>
     <ul class="facts" aria-label="En bref">
       <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Basé à Maurice</li>
-      <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Réponse sous 24&nbsp;h ouvrées</li>
-      <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Prix et délai écrits avant de commencer</li>
+      <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Réponse rapide, sans engagement</li>
+      <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Devis clair avant de commencer</li>
     </ul>
   </div>
 </section>
@@ -300,7 +302,7 @@
     <div class="section-head">
       <span class="eyebrow">Audit gratuit</span>
       <h2>Ce que nous vérifions sur votre site.</h2>
-      <p>Envoyez-nous l'adresse de votre site ou de votre page Facebook. Nous la testons comme le ferait un client sur son téléphone, puis nous vous envoyons une liste claire de ce qu'il faut corriger en priorité. Gratuit, sans engagement.</p>
+      <p>Envoyez-nous l'adresse de votre site ou de votre page Facebook. Nous la testons comme le ferait un client sur son téléphone, puis nous vous envoyons une liste claire de ce qu'il faut corriger en priorité. C'est gratuit.</p>
     </div>
     <ul class="checklist">
       <li><span class="num">1</span><div><strong>Contact en un clic</strong><span>Votre numéro et WhatsApp sont-ils cliquables depuis un téléphone&nbsp;?</span></div></li>
@@ -312,7 +314,7 @@
     </ul>
     <div class="audit-cta">
       <a href="#contact" class="btn btn-primary" data-need="audit">Demander mon audit gratuit</a>
-      <span class="muted">Réponse sous 24&nbsp;h ouvrées.</span>
+      <span class="muted">Gratuit, sans obligation de commander.</span>
     </div>
   </div>
 </section>
@@ -326,9 +328,9 @@
     </div>
     <div class="grid grid-4">
       <div class="card"><span class="num">1</span><h3>On échange</h3><p>Un appel ou un message WhatsApp de 15&nbsp;minutes pour comprendre votre activité et vos clients.</p></div>
-      <div class="card"><span class="num">2</span><h3>Proposition écrite</h3><p>Ce que nous faisons, le prix et le délai. Vous validez avant que nous commencions.</p></div>
+      <div class="card"><span class="num">2</span><h3>Proposition écrite</h3><p>Ce que nous proposons et le prix. Rien ne commence sans votre accord.</p></div>
       <div class="card"><span class="num">3</span><h3>Réalisation</h3><p>Vous voyez le site avant sa mise en ligne et vous demandez vos changements.</p></div>
-      <div class="card"><span class="num">4</span><h3>Mise en ligne</h3><p>Nous testons sur téléphone et ordinateur, nous publions, et nous restons disponibles.</p></div>
+      <div class="card"><span class="num">4</span><h3>Mise en ligne</h3><p>Nous testons sur téléphone et ordinateur, puis nous publions votre site.</p></div>
     </div>
   </div>
 </section>
@@ -360,9 +362,9 @@
       <p>Vortex Digital est une agence récente. Nous n'affichons pas de faux avis ni de chiffres gonflés&nbsp;: nous préférons vous montrer concrètement ce que nous ferions pour vous. C'est tout l'objet de l'audit gratuit.</p>
       <p style="margin-top:18px;"><a class="link" href="https://devmycv-allynesta.vercel.app/" target="_blank" rel="noopener">Voir mon parcours de développeur</a></p>
     </div>
-    <ul class="about-card" aria-label="Nos engagements">
-      <li><b>Un seul interlocuteur</b> du premier message à la mise en ligne.</li>
-      <li><b>Prix et délai écrits</b> avant le début du travail.</li>
+    <ul class="about-card" aria-label="Notre façon de travailler">
+      <li><b>Un contact direct</b>&nbsp;: vous parlez à la personne qui construit votre site.</li>
+      <li><b>Un devis clair</b> avant le début du travail.</li>
       <li><b>Pas de promesse impossible</b>&nbsp;: personne ne peut garantir la première place sur Google.</li>
       <li><b>Des sites légers</b>, rapides sur les connexions mobiles.</li>
     </ul>
@@ -430,7 +432,7 @@
     </div>
     <details>
       <summary>Combien de temps pour avoir mon site&nbsp;?</summary>
-      <p>À partir de 5 jours pour un site Starter, une fois vos textes et photos réunis. Nous vous donnons un délai précis, par écrit, avant de commencer.</p>
+      <p>À partir de 5 jours pour un site Starter, une fois vos textes et photos réunis. Nous convenons du délai ensemble avant de commencer.</p>
     </details>
     <details>
       <summary>Pouvez-vous me mettre premier sur Google&nbsp;?</summary>
@@ -453,7 +455,7 @@
     <div>
       <span class="eyebrow">Contact</span>
       <h2 style="font-size:clamp(1.6rem,3.4vw,2.2rem);margin:10px 0 14px;">Parlons de votre projet.</h2>
-      <p class="muted">Remplissez le formulaire ou écrivez-nous directement. Réponse sous 24&nbsp;h ouvrées.</p>
+      <p class="muted">Remplissez le formulaire ou écrivez-nous directement sur WhatsApp ou par email.</p>
       <ul class="direct">
         <li><a href="mailto:dev.vortexdigital@gmail.com">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
@@ -527,16 +529,16 @@
   </div>
 </footer>
 
-<div class="mobile-bar">
+<div class="mobile-bar" id="mobile-bar">
   <a class="btn btn-wa" data-wa href="#" target="_blank" rel="noopener">WhatsApp</a>
-  <a class="btn btn-primary" href="#audit">Audit gratuit</a>
+  <a class="btn btn-primary" href="#contact" data-need="audit">Audit gratuit</a>
 </div>
 
 <!-- ================= CONFIG ================= -->
 <script>
   // Vortex WhatsApp number, digits only with country code (e.g. '2305xxxxxxx').
   // While empty, every WhatsApp button stays hidden — nothing broken is shown.
-  window.VORTEX_WHATSAPP = '';
+  window.VORTEX_WHATSAPP = '23059829963';
   (function () {
     var n = (window.VORTEX_WHATSAPP || '').replace(/\D/g, '');
     if (!n) return;
@@ -611,9 +613,29 @@
       show('Une erreur est survenue. Réessayez, ou écrivez-nous à dev.vortexdigital@gmail.com.', 'err')
       return
     }
-    show('Merci ! Votre demande est bien envoyée. Nous vous répondons sous 24 h ouvrées.', 'ok')
+    show('Merci ! Votre demande est bien envoyée. Nous revenons vers vous rapidement.', 'ok')
     form.reset()
   })
+</script>
+
+<!-- ================= MOBILE CONTACT BAR VISIBILITY ================= -->
+<script>
+  (function () {
+    var bar = document.getElementById('mobile-bar');
+    var hero = document.querySelector('.hero');
+    var stop = [document.getElementById('contact'), document.querySelector('footer')];
+    if (!bar || !('IntersectionObserver' in window)) { if (bar) bar.classList.add('show'); return; }
+    var heroVisible = true, stopVisible = {};
+    function update() {
+      var nearEnd = Object.keys(stopVisible).some(function (k) { return stopVisible[k]; });
+      bar.classList.toggle('show', !heroVisible && !nearEnd);
+    }
+    new IntersectionObserver(function (e) { heroVisible = e[0].isIntersecting; update(); }, { threshold: 0.15 }).observe(hero);
+    stop.forEach(function (el, i) {
+      if (!el) return;
+      new IntersectionObserver(function (e) { stopVisible[i] = e[0].isIntersecting; update(); }, { threshold: 0 }).observe(el);
+    });
+  })();
 </script>
 
 <!-- ================= THEME + MOBILE MENU ================= -->
